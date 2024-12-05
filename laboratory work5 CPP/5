@@ -1,0 +1,72 @@
+#include <iostream>
+#include <cmath>
+#include <locale>  // Для использования setlocale
+
+using namespace std;
+
+// задача 4
+double task4(int terms) {
+    double sum = 0.0;
+    for (int k = 1; k <= terms; k++) {
+        sum += pow(k, k) / (k + 1);
+    }
+    return sum;
+}
+
+//  задача 23
+double task23(double x, int terms) {
+    double sum = 0.0;
+    for (int n = 1; n <= terms; n++) {
+        double numerator = pow(x, 3 * n);  // x^(3n)
+        long long factorial = 1;
+        for (int i = 2; i <= 2 * n + 1; i++) {
+            factorial *= i;  // Вычисляем (2n+1)!
+        }
+        sum += numerator / factorial;  // Добавляем к сумме
+    }
+    return sum;
+}
+
+// задача18 
+double task18(int terms) {
+    double sum = 0.0;
+    for (int n = 1; n <= terms; n++) {
+        sum += (n * n) / pow(2, n);  // Пример: n^2/2^n
+    }
+    return sum;
+}
+
+int main() {
+    setlocale(LC_ALL, "RU");  // Устанавливаем русский язык для вывода
+    int choice;
+    cout << "Выберите задачу (1 - задача 4, 2 - задача 23, 3 - задача 18): ";
+    cin >> choice;
+
+    int terms;
+    double x;
+
+    switch (choice) {
+    case 1:
+        cout << "Введите количество членов для задачи 4: ";
+        cin >> terms;
+        cout << "Сумма для задачи 4: " << task4(terms) << endl;
+        break;
+
+    case 2:
+        cout << "Введите значение x и количество членов для задачи 23: ";
+        cin >> x >> terms;
+        cout << "Сумма для задачи 23: " << task23(x, terms) << endl;
+        break;
+
+    case 3:
+        cout << "Введите количество членов для задачи 18: ";
+        cin >> terms;
+        cout << "Сумма для задачи 18: " << task18(terms) << endl;
+        break;
+
+    default:
+        cout << "Некорректный выбор задачи." << endl;
+    }
+
+    return 0;
+}
